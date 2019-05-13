@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" data-scale="true">
+  <head>
+    <meta charset="utf-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+    <meta name="viewport" content="width=device-width,height=device-height, shrink-to-fit=no, user-scalable=no,initial-scale=1, minimum-scale=1, maximum-scale=1">  
+    <!-- <script src="../src/assets/js/index.js"></script> -->
+    <meta name="referrer" content="no-referrer">
+    <meta name="theme-color" content="#000000">
+    <link href="https://cdn.bootcss.com/antd-mobile/2.2.13/antd-mobile.css" rel="stylesheet" type="text/css"  />
+    <!-- <meta content="telephone=no,email=no" name="format-detection"> -->
+    <!-- <script>!function(e){function t(a){if(i[a])return i[a].exports;var n=i[a]={exports:{},id:a,loaded:!1};return e[a].call(n.exports,n,n.exports,t),n.loaded=!0,n.exports}var i={};return t.m=e,t.c=i,t.p="",t(0)}([function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var i=window;t["default"]=i.flex=function(e,t){var a=e||100,n=t||1,r=i.document,o=navigator.userAgent,d=o.match(/Android[\S\s]+AppleWebkit\/(\d{3})/i),l=o.match(/U3\/((\d+|\.){5,})/i),c=l&&parseInt(l[1].split(".").join(""),10)>=80,p=navigator.appVersion.match(/(iphone|ipad|ipod)/gi),s=i.devicePixelRatio||1;p||d&&d[1]>534||c||(s=1);var u=1/s,m=r.querySelector('meta[name="viewport"]');m||(m=r.createElement("meta"),m.setAttribute("name","viewport"),r.head.appendChild(m)),m.setAttribute("content","width=device-width,user-scalable=no,initial-scale="+u+",maximum-scale="+u+",minimum-scale="+u),r.documentElement.style.fontSize=a/2*s*n+"px"},e.exports=t["default"]}]); flex(100, 1);</script> -->
+    <!-- <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script> -->
+    <!-- RAS加密插件 -->
+    <style>
+      html,body{
+        width: 100%;
+        max-width: 750px;
+        height: 100%;
+        display: block;
+        margin: auto;
+      }
+      #root{
+        width: 100%;
+        height: 100%;
+      }
+      .App{
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+      }
+      .amap-copyright{
+        display: none !important;
+      }
+      .bofyalertbox{
+        position: fixed;
+        z-index: 1001;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        display: none;
+        right: 0;
+        background: rgba(0,0,0,0.67);
+      }
+      .bofyalertbox .boxl{
+        width: 5.4rem;
+        /* height: 2.8rem; */
+        position: absolute;
+        top: 50%;
+        margin-top: -1.4rem;
+        left: 50%;
+        margin-left: -2.7rem;
+        background: #fff;
+        border-radius: 0.26rem;
+        overflow: hidden;
+        padding: 0.5rem 0 1.3rem;
+      }
+      .bofyalertbox .boxl p{
+            width: 3.6rem;
+            font-size: 0.32rem;
+            color: #494949;
+            margin: auto;
+            text-align: center;
+            line-height: 0.5rem;
+            /* margin-top: 0.5rem; */
+        }
+        .bofyalertbox .boxl .btmbox{
+            width:5.4rem;
+            height:0.88rem;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+        .bofyalertbox .boxl .btmbox label{
+                width: 50%;
+                height: 0.88rem;
+                line-height: 0.88rem;
+                text-align: center;
+                box-sizing: border-box;
+                border-top: 1px solid #eee;
+                float: left;
+                font-size: 0.3rem;
+                color: #777;
+            }
+        .bofyalertbox .boxl .btmbox label:last-child{
+            border-left: 1px solid #eee;
+            color: #24C789;
+        }
+    </style>
+    <script>
+      let widt=document.documentElement.clientWidth>750?750:document.documentElement.clientWidth
+
+      document.documentElement.style.fontSize=widt / 750 * 100 + 'px';
+     window.onload=function(){
+      //  alert(window.devicePixelRatio)
+      //  alert(window.screen.width)
+      
+      // if(window.location.href.split('/Explorer/').length==2){
+      //   document.documentElement.style.fontSize = document.documentElement.clientWidth / 750 * 100 + 'px';
+      // }else{
+      //   document.documentElement.style.fontSize = window.screen.width * window.devicePixelRatio / 7.5 + 'px';
+      // }
+      
+     }
+    //  function sayHello() {
+    //   // alert("我是无参无返回toast") 
+    //  }
+    
+    function changetit(url){//传递地址
+      console.log(url)
+      if(url){
+        window.location.href=url
+      }
+    }
+    function hideheaderlefticon(bol){
+      var left=document.getElementById('header_left_icon')
+      if(bol){
+        left.style.display='blobk'
+      }else{
+        left.style.display='none'
+      }
+      
+    }
+    function  getiframe(){
+     // window.frames['iframeId'];
+     // console.log(999999,window.frames['SunPage'])
+      if(window.frames['SunPage']!=undefined){
+        return true
+      }else{
+        return false
+      }
+    }
+     function getAgrT(str){
+      setCookie('argT',str,1)
+      sessionStorage.setItem('argt',str)
+     }
+     function CommissionDisplay(bool){
+      sessionStorage.setItem('CommissionDisplay',bool)
+     }
+     function sentconsole(res,tit){
+
+        // var continer=document.getElementById('consolebox');
+        // var txtlist=JSON.stringify(res).split(',')
+        // continer.innerHTML+='<p>'+tit+'</p>'
+        // txtlist.map(function(value,key){
+        //   continer.innerHTML+='<p>'+value+'<p>';
+        // })
+        // continer.innerHTML+='<p style="width:100%;height:60px;"></p>'
+        
+     }
+    
+     function setCookie(cname,cvalue,exdays){
+          var d = new Date();
+          d.setTime(d.getTime()+(exdays*24*60*60*1000));
+          var expires = "expires="+d.toGMTString();
+          document.cookie = cname+"="+cvalue+"; "+expires;
+      }
+    </script>
+    <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+    <script>
+      if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function() {
+          FastClick.attach(document.body);
+        }, false);
+      }
+      if(!window.Promise) {
+        document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
+      }
+    </script>
+    
+    
+    <!-- <script>
+    
+      if(window.location.host=="devpage.henzfin.com"||window.location.host=="testpage.henzfin.com"){//如果是测试账号就加载日志
+        document.writeln('<script src="https://cdn.bootcss.com/eruda/1.4.3/eruda.min.js"'+'>'+'<'+'/'+'script>');
+          setTimeout(function(){
+            eruda.init({
+              tool: ['console', 'elements','network','Sources','Resources']
+            });
+          },200)
+       
+      }
+       
+    </script> -->
+    <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+    <!-- <link rel="manifest" href="%PUBLIC_URL%/manifest.json"> -->
+    <!-- <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico"> -->
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title></title>
+  </head>
+  <body>
+      <!-- <div class="indexloading" id="indexloading" style="border-radius: 10px">
+        <img src='http://chuantu.biz/t6/324/1528266388x-1566688329.gif' />
+      </div> -->
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  <script type="text/javascript" src="./app_3c23c63b.js"></script></body>
+</html>
